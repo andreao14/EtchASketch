@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Etch a sketch</title>
+</head>
+<body>
+    <div class="mainmenu">
+            <h1 id="title">Etch a sketch</h1>
+            <div class="main">
+                <div class="configuration">
+                    <input type="color" id="colorpicker" value="#333333">
+                    <button class="buttons" id="buttoncolor">Color Mode</button>
+                    <button class="buttons" id="raimbowmode">Raimbow mode</button>
+                    <button class="buttons" id="Eraser">Eraser</button>
+                    <button class="buttons" id="clear">Clear</button>
+                    <div id="value">16 x 16</div>
+                    <input type="range" value="16" min="1" max="64" id="counter">
+                    
+                </div>
+                <div id="game">
+                </div>
+            </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
