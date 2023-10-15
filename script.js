@@ -3,11 +3,15 @@ const counter = document.getElementById("counter");
 const game = document.getElementById("game");
 const clear = document.getElementById("clear");
 const eraser = document.getElementById("Eraser");
-const buttoncolor =  document.getElementById("buttoncolor");
+const buttoncolor = document.getElementById("buttoncolor");
 const colorpicker = document.getElementById("colorpicker");
 const raimbowmode = document.getElementById("raimbowmode");
+let isEraserMode = false;
+let isMouseDown;
 
-let isEraserMode = false; 
+game.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+});
 
 function createGrid(gridSize) {
     valor.textContent = `${gridSize} x ${gridSize}`;
@@ -17,8 +21,8 @@ function createGrid(gridSize) {
     for (let i = 0; i < gridSize * gridSize; i++) {
         let square = document.createElement("div");
         square.style.backgroundColor = "white";
+        square.classList.add("square");
         game.appendChild(square);
-
         square.addEventListener("mousedown", () => {
             isMouseDown = true;
             if (isEraserMode) {
@@ -27,7 +31,7 @@ function createGrid(gridSize) {
                 square.style.backgroundColor = `${colorpicker.value}`;
             }
         });
-        
+
         square.addEventListener("mouseover", () => {
             if (isMouseDown) {
                 if (isEraserMode) {
@@ -37,10 +41,11 @@ function createGrid(gridSize) {
                 }
             }
         });
-        
+
         square.addEventListener("mouseup", () => {
             isMouseDown = false;
         });
+
         clear.addEventListener("click", () => {
             square.style.backgroundColor = "white";
         });
@@ -60,23 +65,23 @@ counter.addEventListener("input", () => {
 eraser.addEventListener("click", () => {
     eraser.style.backgroundColor = "#333333";
     eraser.style.color = "white";
-    raimbowmode.style.backgroundColor = "white"
-    raimbowmode.style.color = "#333333"
+    raimbowmode.style.backgroundColor = "white";
+    raimbowmode.style.color = "#333333";
     buttoncolor.style.backgroundColor = "white";
     buttoncolor.style.color = "#333333";
-    
-
     isEraserMode = true;
 });
+
 buttoncolor.addEventListener("click", () => {
     eraser.style.backgroundColor = "white";
     eraser.style.color = "#333333";
     buttoncolor.style.backgroundColor = "#333333";
     buttoncolor.style.color = "white";
-    raimbowmode.style.backgroundColor = "white"
-    raimbowmode.style.color = "#333333"
+    raimbowmode.style.backgroundColor = "white";
+    raimbowmode.style.color = "#333333";
     isEraserMode = false;
-})
+});
+
 function getRandomColor() {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -87,19 +92,17 @@ function getRandomColor() {
 }
 
 raimbowmode.addEventListener("click", () => {
-    raimbowmode.style.backgroundColor= "#333333";
-    raimbowmode.style.color = "white"
+    raimbowmode.style.backgroundColor = "#333333";
+    raimbowmode.style.color = "white";
     eraser.style.backgroundColor = "white";
     eraser.style.color = "#333333";
     buttoncolor.style.backgroundColor = "white";
     buttoncolor.style.color = "#333333";
-
-
     isEraserMode = false;
 
     rainbowInterval = setInterval(() => {
-        colorpicker.value = getRandomColor(); 
-    }, 1); 
+        colorpicker.value = getRandomColor();
+    }, 1);
 });
 
 buttoncolor.addEventListener("click", () => {
@@ -107,8 +110,6 @@ buttoncolor.addEventListener("click", () => {
     eraser.style.color = "#333333";
     buttoncolor.style.backgroundColor = "#333333";
     buttoncolor.style.color = "white";
-
-    isEraserMode = false; 
-
-    clearInterval(rainbowInterval); 
+    isEraserMode = false;
+    clearInterval(rainbowInterval);
 });

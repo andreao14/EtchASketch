@@ -62,3 +62,6 @@ body{
     accent-color: #333333;
     cursor: pointer;
 }
+#game div{
+    -webkit-user-drag: none;
+}
